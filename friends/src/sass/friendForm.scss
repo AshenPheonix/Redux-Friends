@@ -1,0 +1,13 @@
+.friendForm{
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top:1rem;
+    button{
+        margin:.5rem;
+        padding:.5rem;
+    }
+    label{
+        margin:.5rem 0;
+    }
+}
