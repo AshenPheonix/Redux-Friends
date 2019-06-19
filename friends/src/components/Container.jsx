@@ -21,7 +21,7 @@ function FriendsList() {
 
     return (
         <div>
-            <h2>Hello {username}</h2>
+            <h2 className="intro">Hello {username}</h2>
             <section className="container">
                 {!loading &&
                     <section className="friends">
