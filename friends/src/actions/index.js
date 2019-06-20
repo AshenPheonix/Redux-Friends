@@ -12,16 +12,16 @@ export const SUCCESS="SUCCESS"
 export const LOADING='LOADING'
 export const CLEAR='CLEAR'
 
-export const login=()=>dispatch=>{
-    
+export const login=creds=>dispatch=>{
     dispatch({type:GET_TOKEN})
-    let request = axios.post(LOGIN,{username:'Lambda School', password:'i<3Lambd4'})
+    
+    let request = axios.post(LOGIN,{username:creds.username, password:creds.password})
     request.then(data=>{
-        localStorage.setItem('tokin',data.data.payload)
+        localStorage.setItem('token',data.data.payload)
         axios.defaults.headers.common['Authorization']=data.data.payload;
         dispatch({type:SUCCESS,payload:data.data.payload})
     }).catch(err=>{
-        dispatch({type:ERROR,payload:err})
+        dispatch({type:ERROR,payload:err.response.data.error})
     })
 }
 
@@ -31,7 +31,7 @@ export const getFriends=()=>dispatch=>{
     request.then(data=>{
         dispatch({type:GET_FRIENDS,payload:data.data})
     }).catch(err=>{
-        dispatch({type:ERROR,payload:err})
+        dispatch({type:ERROR,payload:err.response.data.error})
     })
 }
 
@@ -41,7 +41,7 @@ export const removeFriend=id=>dispatch=>{
     request.then(data=>{
         dispatch({type:GET_FRIENDS,payload:data.data})
     }).catch(err=>{
-        dispatch({type:ERROR,payload:err})
+        dispatch({type:ERROR,payload:err.response.data.error})
     })
 }
 
@@ -51,11 +51,11 @@ export const clear=e=>{
 
 export const addFriend=e=>dispatch=>{
     dispatch({type:LOADING})
-    let request=axios.post(ALL)
+    let request=axios.post(ALL,e)
     request.then(data=>{
         dispatch({type:GET_FRIENDS,payload:data.data})
     }).catch(err=>{
-        dispatch({type:ERROR,payload:err})
+        dispatch({type:ERROR,payload:err.response.data.error})
     })
 }
 
@@ -65,7 +65,7 @@ export const editFriend=e=>dispatch=>{
     request.then(data=>{
         dispatch({type:GET_FRIENDS,payload:data.data})
     }).catch(err=>{
-        dispatch({type:ERROR,payload:err})
+        dispatch({type:ERROR,payload:err.response.data.error})
     })
 }
 

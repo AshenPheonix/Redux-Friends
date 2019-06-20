@@ -17,12 +17,10 @@ function App(props) {
   if(logging){
     return(<h2 className="login">Logging in</h2>)
   }
-  if(error){
-    return <h2 className="error">Error while loading: {error}</h2>
-  }
   return (
     <div className="app">
       <Router>
+        {error && <h2 className="error">Error: {error}</h2>}
         <PrivateRoute exact path='/' comp={FriendsList} />
         <Route path="/login" component={Login}/>
       </Router>

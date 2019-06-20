@@ -1,0 +1,12 @@
+@import './vars';
+
+.loginForm{
+    @include Forms();
+    label{
+        width:100%;
+        display:flex;
+        input{
+            width: 100%;
+        }
+    }
+}

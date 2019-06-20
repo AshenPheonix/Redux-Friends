@@ -29,9 +29,10 @@ function FriendForm() {
 
         if(id){
             dispatch(editFriend({...temp,id}))
-        }else{
+        }else if(name!=='',age!=='',email!==''){
             dispatch(addFriend(temp))
-        }
+        }else
+            return;
         empty();
     }
 
